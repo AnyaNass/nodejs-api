@@ -64,10 +64,28 @@ const logout = async (req, res) => {
 
 }
 
+const edisSubscription = async (req, res) => {
+	const subscriptionOptions = ["starter", "pro", "business"];
+	const { _id } = req.user;
+
+	if (!subscriptionOptions.includes(req.body.subscription)) {
+		throw HttpError(400)
+	}
+
+	const result = await User.findByIdAndUpdate(_id, req.body, { new: true })
+
+	if (!result) {
+		throw HttpError(404)
+	}
+
+	res.status(200).json(result)
+}
+
 module.exports = {
 	signup: controllerWrapper(signup),
 	login: controllerWrapper(login),
 	current: controllerWrapper(current),
 	logout: controllerWrapper(logout),
+	edisSubscription: controllerWrapper(edisSubscription),
 }
 

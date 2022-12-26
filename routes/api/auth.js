@@ -16,4 +16,6 @@ router.get("/current", authtenticate, controller.current)
 
 router.get("/logout", authtenticate, controller.logout)
 
+router.patch("/users", authtenticate, validateBody(schemas.subscriptionSchema), controller.edisSubscription)
+
 module.exports = router;
