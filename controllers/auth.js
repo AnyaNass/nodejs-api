@@ -62,7 +62,7 @@ const login = async (req, res) => {
 	res.json({
 		email: user.email,
 		subscription: user.subscription,
-
+		token
 	})
 }
 
