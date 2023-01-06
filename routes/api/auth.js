@@ -20,4 +20,8 @@ router.patch("/users", authtenticate, validateBody(schemas.subscriptionSchema), 
 
 router.patch("/users/avatars", authtenticate, upload.single("avatar"), controller.updateAvatar)
 
+router.get("/users/verify/:verificationToken", controller.verify)
+
+router.post("/users/verify", validateBody(schemas.verifySchema), controller.resendVerifyEmail)
+
 module.exports = router;
